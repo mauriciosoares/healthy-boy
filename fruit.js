@@ -13,6 +13,10 @@ var Fruit = function(game) {
   this.inputEnabled = true;
   this.scale.setTo(0);
 
+  // add sound
+
+  this.crunch = game.add.audio('crunch');
+
   // events
   this.addAnimation();
   this.addEvents();
@@ -55,6 +59,7 @@ Fruit.prototype.clicked = function() {
 };
 
 Fruit.prototype.killEvent = function() {
+  this.crunch.play();
   this.kill();
   this.customEvents.kill();
 };

@@ -2,12 +2,20 @@ var GameState = function() {};
 
 GameState.prototype.preload = function() {
   this.game.load.image('apple', 'apple.png');
+
+  this.game.load.audio('crunch', 'crunch.mp3');
 };
 
 GameState.prototype.create = function() {
   this.game.stage.backgroundColor = 0x4488cc;
 
+  this.addTimer();
   this.addFruit();
+};
+
+GameState.prototype.addTimer = function() {
+  var timer = new Timer(this.game);
+  this.game.add.existing(timer);
 };
 
 GameState.prototype.addFruit = function() {
