@@ -7,8 +7,15 @@ GameState.prototype.preload = function() {
 GameState.prototype.create = function() {
   this.game.stage.backgroundColor = 0x4488cc;
 
-  var fruit = new Fruit(this.game, 50, 50);
+  this.addFruit();
+};
+
+GameState.prototype.addFruit = function() {
+  var fruit = new Fruit(this.game);
   this.game.add.existing(fruit);
+
+  // when killed, add another fruit :)
+  fruit.on('kill', this.addFruit, this);
 };
 
 var game = new Phaser.Game(320, 568, Phaser.AUTO, 'game');

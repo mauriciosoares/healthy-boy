@@ -1,7 +1,14 @@
-var Fruit = function(game, x, y) {
-  Phaser.Sprite.call(this, game, x, y, 'apple');
+var Fruit = function(game) {
+  Phaser.Sprite.call(this, game, 0, 0, 'apple');
+
+  var x = game.rnd.integerInRange(this.width / 2, game.width - this.width / 2),
+    y = game.rnd.integerInRange(this.width / 2, game.height - this.width / 2);
+
+  this.position.x = x;
+  this.position.y = y;
 
   // some configuration
+  this.customEvents = {};
   this.anchor.setTo(0.5, 0.5);
   this.inputEnabled = true;
   this.scale.setTo(0);
@@ -13,6 +20,10 @@ var Fruit = function(game, x, y) {
 
 Fruit.prototype = Object.create(Phaser.Sprite.prototype);
 Fruit.prototype.constructor = Fruit;
+
+Fruit.prototype.on = function(index, callback, context) {
+  this.customEvents[index] = callback.bind(context);
+};
 
 Fruit.prototype.addAnimation = function() {
   this.game.add.tween(this.scale)
@@ -28,12 +39,6 @@ Fruit.prototype.addAnimation = function() {
     .loop();
 };
 
-Fruit.prototype.update = function() {
-  // console.log('fruit');
-  // console.log(this.x);
-  // console.log(this.game);
-};
-
 Fruit.prototype.addEvents = function() {
   this.events.onInputDown.add(this.clicked, this);
 };
@@ -46,7 +51,10 @@ Fruit.prototype.clicked = function() {
 
   // little trick, since oncomplete was not
   // working as i expected
-  setTimeout(function() {
-    this.kill();
-  }.bind(this), 200);
+  setTimeout(this.killEvent.bind(this), 200);
+};
+
+Fruit.prototype.killEvent = function() {
+  this.kill();
+  this.customEvents.kill();
 };
