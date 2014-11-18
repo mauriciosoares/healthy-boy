@@ -7,7 +7,7 @@ GameState.prototype.preload = function() {
 GameState.prototype.create = function() {
   this.game.stage.backgroundColor = 0x4488cc;
 
-  var fruit = new Fruit(this.game, 10, 10);
+  var fruit = new Fruit(this.game, 50, 50);
   this.game.add.existing(fruit);
 };
 
