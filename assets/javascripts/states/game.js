@@ -21,6 +21,10 @@
   GameState.prototype.create = function() {
     this.game.stage.backgroundColor = 0x4488cc;
 
+    // constants
+    this.DIFFICULT_2 = 5;
+    this.DIFFICULT_3 = 10;
+
     this.addTimer();
     this.addFruit();
 
@@ -28,7 +32,7 @@
   };
 
   GameState.prototype.update = function() {
-    // console.log('update');
+
   };
 
   GameState.prototype.addTimer = function() {
@@ -37,14 +41,21 @@
   };
 
   GameState.prototype.addFruit = function() {
-    var fruit = new Fruit(this.game, this.timer, 1);
+    var fruitType = 1;
+    if(Fruit.killed >= this.DIFFICULT_2 && Fruit.killed < this.DIFFICULT_3) {
+      fruitType = Phaser.GAMES[0].rnd.integerInRange(1, 2);
+    } else if(Fruit.killed >= this.DIFFICULT_3) {
+      fruitType = Phaser.GAMES[0].rnd.integerInRange(1, 3);
+    }
+
+    var fruit = new Fruit(this.game, this.timer, fruitType);
     this.game.add.existing(fruit);
 
     // when killed, add another fruit :)
-    fruit.on('kill', this.parseKilledFruit, this);
+    fruit.on('kill', this.onKill, this);
   };
 
-  GameState.prototype.parseKilledFruit= function(fruit) {
+  GameState.prototype.onKill= function(fruit) {
     this.points.increase(fruit.type);
     this.addFruit();
   };

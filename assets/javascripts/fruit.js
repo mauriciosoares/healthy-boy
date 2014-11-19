@@ -62,8 +62,6 @@
       .to({ x: 0, y: 0 }, 100)
       .start();
 
-    this.customEvents.kill();
-
     // little trick, since oncomplete was not
     // working as i expected
     setTimeout(this.killEvent.bind(this), 200);
@@ -74,6 +72,8 @@
     Fruit.killed += 1;
     this.crunch.play();
     this.kill();
+
+    this.customEvents.kill();
   };
 
   root.Fruit = Fruit;
