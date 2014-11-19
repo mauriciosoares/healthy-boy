@@ -1,10 +1,10 @@
 (function(root) {
   'use strict';
 
-  var Fruit = function(game, timer, fruitType) {
-    Phaser.Sprite.call(this, game, 0, 0, 'fruit-' + fruitType);
+  var Fruit = function(game, timer, type) {
+    Phaser.Sprite.call(this, game, 0, 0, 'fruit-' + type);
 
-    this.fruitType = fruitType;
+    this.type = type;
 
     var x = game.rnd.integerInRange(this.width / 2, game.width - this.width / 2),
       y = game.rnd.integerInRange(this.width / 2, game.height - this.width / 2);
@@ -35,7 +35,7 @@
   Fruit.prototype.constructor = Fruit;
 
   Fruit.prototype.on = function(index, callback, context) {
-    this.customEvents[index] = callback.bind(context);
+    this.customEvents[index] = callback.bind(context, this);
   };
 
   Fruit.prototype.addAnimation = function() {
@@ -70,7 +70,7 @@
   };
 
   Fruit.prototype.killEvent = function() {
-    this.timer.increase(this.fruitType);
+    this.timer.increase(this.type);
     Fruit.killed += 1;
     this.crunch.play();
     this.kill();

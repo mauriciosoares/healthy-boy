@@ -23,6 +23,8 @@
 
     this.addTimer();
     this.addFruit();
+
+    this.points = new Points(this.game);
   };
 
   GameState.prototype.update = function() {
@@ -39,7 +41,12 @@
     this.game.add.existing(fruit);
 
     // when killed, add another fruit :)
-    fruit.on('kill', this.addFruit, this);
+    fruit.on('kill', this.parseKilledFruit, this);
+  };
+
+  GameState.prototype.parseKilledFruit= function(fruit) {
+    this.points.increase(fruit.type);
+    this.addFruit();
   };
 
   root.GameState = GameState;
