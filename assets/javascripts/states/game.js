@@ -2,8 +2,8 @@
   'use strict';
 
   // Constants
-  var IMAGES_PATH = './assets/images/',
-    SOUNDS_PATH = './assets/sounds/';
+  var IMAGES_PATH = '/assets/images/',
+    SOUNDS_PATH = '/assets/sounds/';
 
   var GameState = function() {};
 
