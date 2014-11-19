@@ -1,8 +1,10 @@
-var Fruit = function(game) {
+var Fruit = function(game, timer) {
   Phaser.Sprite.call(this, game, 0, 0, 'apple');
 
   var x = game.rnd.integerInRange(this.width / 2, game.width - this.width / 2),
     y = game.rnd.integerInRange(this.width / 2, game.height - this.width / 2);
+
+  this.timer = timer;
 
   this.position.x = x;
   this.position.y = y;
@@ -59,6 +61,7 @@ Fruit.prototype.clicked = function() {
 };
 
 Fruit.prototype.killEvent = function() {
+  this.timer.width += 30;
   this.crunch.play();
   this.kill();
   this.customEvents.kill();

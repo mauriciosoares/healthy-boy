@@ -3,6 +3,8 @@ var GameState = function() {};
 GameState.prototype.preload = function() {
   this.game.load.image('apple', 'apple.png');
 
+  this.game.load.image('timer', 'timer.jpg');
+
   this.game.load.audio('crunch', 'crunch.mp3');
 };
 
@@ -14,12 +16,12 @@ GameState.prototype.create = function() {
 };
 
 GameState.prototype.addTimer = function() {
-  var timer = new Timer(this.game);
-  this.game.add.existing(timer);
+  this.timer = new Timer(this.game);
+  this.game.add.existing(this.timer);
 };
 
 GameState.prototype.addFruit = function() {
-  var fruit = new Fruit(this.game);
+  var fruit = new Fruit(this.game, this.timer);
   this.game.add.existing(fruit);
 
   // when killed, add another fruit :)
