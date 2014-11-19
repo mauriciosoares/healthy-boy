@@ -1,5 +1,7 @@
-var Fruit = function(game, timer) {
-  Phaser.Sprite.call(this, game, 0, 0, 'apple');
+var Fruit = function(game, timer, fruitType) {
+  Phaser.Sprite.call(this, game, 0, 0, 'fruit-' + fruitType);
+
+  this.fruitType = fruitType;
 
   var x = game.rnd.integerInRange(this.width / 2, game.width - this.width / 2),
     y = game.rnd.integerInRange(this.width / 2, game.height - this.width / 2);
@@ -63,8 +65,8 @@ Fruit.prototype.clicked = function() {
 };
 
 Fruit.prototype.killEvent = function() {
+  this.timer.increase(this.fruitType);
   Fruit.killed += 1;
-  this.timer.width += 30;
   this.crunch.play();
   this.kill();
   this.customEvents.kill();

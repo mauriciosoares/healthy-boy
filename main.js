@@ -1,7 +1,7 @@
 var GameState = function() {};
 
 GameState.prototype.preload = function() {
-  this.game.load.image('apple', 'apple.png');
+  this.game.load.image('fruit-1', 'fruit-1.png');
 
   this.game.load.image('timer', 'timer.jpg');
 
@@ -25,7 +25,7 @@ GameState.prototype.addTimer = function() {
 };
 
 GameState.prototype.addFruit = function() {
-  var fruit = new Fruit(this.game, this.timer);
+  var fruit = new Fruit(this.game, this.timer, 1);
   this.game.add.existing(fruit);
 
   // when killed, add another fruit :)

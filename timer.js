@@ -20,10 +20,14 @@ Timer.prototype.setPosition = function() {
 };
 
 Timer.prototype.update = function() {
-  console.log(this.COUNTER_COEFICIENT + Helpers.formatNumber(Fruit.killed));
-  this.width -= this.COUNTER_COEFICIENT + Helpers.formatNumber(Fruit.killed);
+  console.log(Helpers.formatNumber('0' + Fruit.killed));
+  this.width -= this.COUNTER_COEFICIENT + Helpers.formatNumber('0' + Fruit.killed);
 
   if(this.width > this.TIMER_MAX_WIDTH) {
     this.width = this.TIMER_MAX_WIDTH;
   }
+};
+
+Timer.prototype.increase = function(amount) {
+  this.width += amount + 10;
 };
