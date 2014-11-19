@@ -24,6 +24,8 @@ var Fruit = function(game, timer) {
   this.addEvents();
 };
 
+Fruit.killed = 0;
+
 Fruit.prototype = Object.create(Phaser.Sprite.prototype);
 Fruit.prototype.constructor = Fruit;
 
@@ -61,6 +63,7 @@ Fruit.prototype.clicked = function() {
 };
 
 Fruit.prototype.killEvent = function() {
+  Fruit.killed += 1;
   this.timer.width += 30;
   this.crunch.play();
   this.kill();

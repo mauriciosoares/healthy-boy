@@ -15,6 +15,10 @@ GameState.prototype.create = function() {
   this.addFruit();
 };
 
+GameState.prototype.update = function() {
+  // console.log('update');
+};
+
 GameState.prototype.addTimer = function() {
   this.timer = new Timer(this.game);
   this.game.add.existing(this.timer);

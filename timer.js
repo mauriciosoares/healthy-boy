@@ -3,6 +3,7 @@ var Timer = function(game) {
 
   // constants
   this.TIMER_MAX_WIDTH = this.game.width - 40;
+  this.COUNTER_COEFICIENT = 0.3;
 
   this.setPosition();
 };
@@ -19,7 +20,8 @@ Timer.prototype.setPosition = function() {
 };
 
 Timer.prototype.update = function() {
-  this.width -= 0.3;
+  console.log(this.COUNTER_COEFICIENT + Helpers.formatNumber(Fruit.killed));
+  this.width -= this.COUNTER_COEFICIENT + Helpers.formatNumber(Fruit.killed);
 
   if(this.width > this.TIMER_MAX_WIDTH) {
     this.width = this.TIMER_MAX_WIDTH;
