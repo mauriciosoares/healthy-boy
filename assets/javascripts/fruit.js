@@ -5,6 +5,7 @@
     Phaser.Sprite.call(this, game, 0, 0, 'fruit-' + type);
 
     this.type = type;
+    this.dead = false;
 
     var x = game.rnd.integerInRange(this.width / 2, game.width - this.width / 2),
       y = game.rnd.integerInRange(this.width / 2, game.height - this.width / 2);
@@ -57,6 +58,7 @@
   };
 
   Fruit.prototype.clicked = function() {
+    if(this.dead) return;
     this.game.add.tween(this.scale)
       .to({ x: 1.1, y: 1.1 }, 100)
       .to({ x: 0, y: 0 }, 100)
@@ -65,6 +67,7 @@
     // little trick, since oncomplete was not
     // working as i expected
     setTimeout(this.killEvent.bind(this), 200);
+    this.dead = true;
   };
 
   Fruit.prototype.killEvent = function() {
