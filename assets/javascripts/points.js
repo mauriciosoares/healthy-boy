@@ -10,7 +10,7 @@
     });
   };
 
-  Points.prototype = Object.create(Phaser.Sprite.prototype);
+  Points.prototype = Object.create(Phaser.Text.prototype);
   Points.prototype.constructor = Points;
 
   Points.prototype.increase = function(amount) {

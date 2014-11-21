@@ -5,8 +5,8 @@
     Phaser.Sprite.call(this, game, 0, 0, 'timer');
 
     // constants
-    this.TIMER_MAX_WIDTH = this.game.width - 40;
-    this.COUNTER_COEFICIENT = 0.3;
+    this.TIMER_MAX_WIDTH = this.game.width - 80;
+    this.COUNTER_COEFICIENT = 0.8;
 
     this.setPosition();
   };
@@ -15,11 +15,11 @@
   Timer.prototype.constructor = Timer;
 
   Timer.prototype.setPosition = function() {
-    this.x = 20;
-    this.y = 20;
+    this.x = 40;
+    this.y = 40;
 
     this.width = this.TIMER_MAX_WIDTH;
-    this.height = 20;
+    this.height = 40;
   };
 
   Timer.prototype.update = function() {
@@ -31,7 +31,7 @@
   };
 
   Timer.prototype.increase = function(amount) {
-    this.width += amount * 10;
+    this.width += amount * 20;
   };
 
   root.Timer = Timer;
