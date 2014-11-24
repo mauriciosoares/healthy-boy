@@ -15,7 +15,7 @@
     this.crunch = this.game.add.audio('crunch');
 
     var x = this.game.rnd.integerInRange(this.width / 2, this.game.width - this.width / 2),
-      y = this.game.rnd.integerInRange(this.width / 2, this.game.height - this.width / 2);
+      y = this.game.rnd.integerInRange(this.height / 2, this.game.height - this.height / 2);
 
     this.scale.setTo(0);
 

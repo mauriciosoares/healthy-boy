@@ -13,12 +13,14 @@
     // this.scale.setTo(0);
     this.crunch = this.game.add.audio('crunch');
 
-    var x = this.calcPosition(config.fruit.position.x, 'width'),
-      y = this.calcPosition(config.fruit.position.y, 'height');
+    var x = this.game.rnd.integerInRange(this.width / 2, this.game.width - this.width / 2),
+      y = this.game.rnd.integerInRange(this.height / 2, this.game.height - this.height / 2);
 
     this.position.x = x;
     this.position.y = y;
 
+    console.log(this.overlap(config.fruit));
+    console.log(config.fruit);
     // events
     // this.addAnimation();
     // this.addEvents();
@@ -26,11 +28,6 @@
 
   Junk.prototype = Object.create(Phaser.Sprite.prototype);
   Junk.prototype.constructor = Junk;
-
-  Junk.prototype.calcPosition = function(comparator, calc) {
-    var n = this.game.rnd.integerInRange(this.width / 2, this.game.width - this.width / 2)
-    return comparator;
-  };
 
   root.Junk = Junk;
 } (this));
