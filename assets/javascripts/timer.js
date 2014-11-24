@@ -19,7 +19,7 @@
     this.y = 40;
 
     this.width = this.TIMER_MAX_WIDTH;
-    this.height = 40;
+    this.height = 80;
   };
 
   Timer.prototype.update = function() {

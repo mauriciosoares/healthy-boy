@@ -8,10 +8,13 @@
   var GameState = function() {};
 
   GameState.prototype.preload = function() {
-    // loads all fruits assets
+    // loads all food assets
     this.game.load.image('fruit-1', IMAGES_PATH + 'fruit-1.png');
     this.game.load.image('fruit-2', IMAGES_PATH + 'fruit-2.png');
     this.game.load.image('fruit-3', IMAGES_PATH + 'fruit-3.png');
+    this.game.load.image('junk-1', IMAGES_PATH + 'junk-1.png');
+    this.game.load.image('junk-2', IMAGES_PATH + 'junk-2.png');
+    this.game.load.image('junk-3', IMAGES_PATH + 'junk-3.png');
 
     this.game.load.image('timer', IMAGES_PATH + 'timer.jpg');
 

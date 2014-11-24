@@ -4,10 +4,15 @@
   var Points = function(game) {
     this.points = 0;
 
-    this.pointsText = game.add.text(60, 60, '0', {
-      font: '40px Arial',
+    this.pointsText = game.add.text(120, 180, '', {
+      font: '120px vcr',
       fill: '#ffffff'
     });
+
+    game.time.events.add(1000, function(){
+      this.pointsText.setText('0');
+      this.pointsText.setText('0');
+    }, this);
   };
 
   Points.prototype = Object.create(Phaser.Text.prototype);
