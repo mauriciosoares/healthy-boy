@@ -51,8 +51,20 @@
       fruitType = Phaser.GAMES[0].rnd.integerInRange(1, 3);
     }
 
-    var fruit = new Fruit(this.game, this.timer, fruitType);
+    var fruit = new Fruit({
+      game: this.game,
+      timer: this.timer,
+      type: fruitType
+    });
     this.game.add.existing(fruit);
+
+    var junk = new Junk({
+      game: this.game,
+      timer: this.timer,
+      type: 1,
+      fruit: fruit
+    });
+    this.game.add.existing(junk);
 
     // when killed, add another fruit :)
     fruit.on('kill', this.onKill, this);
