@@ -35,7 +35,10 @@
   };
 
   GameState.prototype.update = function() {
-
+    if(this.junk && this.junk.overlap(this.fruit)) {
+      this.junk.updateXY();
+      console.log('update');
+    }
   };
 
   GameState.prototype.addTimer = function() {
@@ -51,23 +54,23 @@
       fruitType = Phaser.GAMES[0].rnd.integerInRange(1, 3);
     }
 
-    var fruit = new Fruit({
+    this.fruit = new Fruit({
       game: this.game,
       timer: this.timer,
       type: fruitType
     });
-    this.game.add.existing(fruit);
+    this.game.add.existing(this.fruit);
 
-    var junk = new Junk({
+    this.junk = new Junk({
       game: this.game,
       timer: this.timer,
       type: 1,
-      fruit: fruit
+      fruit: this.fruit
     });
-    this.game.add.existing(junk);
+    this.game.add.existing(this.junk);
 
     // when killed, add another fruit :)
-    fruit.on('kill', this.onKill, this);
+    this.fruit.on('kill', this.onKill, this);
   };
 
   GameState.prototype.onKill= function(fruit) {
