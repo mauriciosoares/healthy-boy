@@ -1,29 +1,26 @@
 (function(root) {
   'use strict';
 
-  var Fruit = function(game, timer, type) {
-    Phaser.Sprite.call(this, game, 0, 0, 'fruit-' + type);
+  var Fruit = function(config) {
+    Phaser.Sprite.call(this, config.game, 0, 0, 'fruit-' + config.type);
 
-    this.type = type;
+    // common configs
+    this.game = config.game;
+    this.timer = config.timer;
+    this.type = config.type;
     this.dead = false;
-
-    var x = game.rnd.integerInRange(this.width / 2, game.width - this.width / 2),
-      y = game.rnd.integerInRange(this.width / 2, game.height - this.width / 2);
-
-    this.timer = timer;
-
-    this.position.x = x;
-    this.position.y = y;
-
-    // some configuration
     this.customEvents = {};
     this.anchor.setTo(0.5, 0.5);
     this.inputEnabled = true;
+    this.crunch = this.game.add.audio('crunch');
+
+    var x = this.game.rnd.integerInRange(this.width / 2, this.game.width - this.width / 2),
+      y = this.game.rnd.integerInRange(this.width / 2, this.game.height - this.width / 2);
+
     this.scale.setTo(0);
 
-    // add sound
-
-    this.crunch = game.add.audio('crunch');
+    this.position.x = x;
+    this.position.y = y;
 
     // events
     this.addAnimation();
